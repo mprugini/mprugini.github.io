@@ -81,9 +81,9 @@
               >Interests</a
             >
           </li>
-          <!-- <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-        </li> -->
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+          </li>
         </ul>
       </div>
     </nav>
@@ -97,6 +97,18 @@
           <h1 class="mb-0">
             Milos
             <span class="text-primary">Pruginic</span>
+            <button
+              type="button"
+              class="btn btn-outline-primary btn-sm welcome-btn align-middle"
+              id="welcomeBtn"
+              aria-label="Play welcome message"
+              title="Play welcome message"
+            >
+              <i class="fa fa-volume-up" id="welcomeBtnIcon"></i>
+            </button>
+            <audio id="welcomeAudio" preload="none">
+              <source src="audio/welcome-message.mp3" type="audio/mpeg" />
+            </audio>
           </h1>
           <div class="subheading mb-5">
             North York, ON · (647) 787-5320 ·
@@ -437,32 +449,49 @@
 
       <hr class="m-0" />
 
-      <!-- <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="contact">
-      <div class="w-100">
-        <h2 class="mb-5">Contact Me</h2>
+      <section
+        class="resume-section p-3 p-lg-5 d-flex justify-content-center"
+        id="contact"
+      >
+        <div class="w-100">
+          <h2 class="mb-5">Contact Me</h2>
 
-        <form>
-          <div class="form-row">
-            <div class="col-sm-5">
-              <input type="text" class="form-control" placeholder="First name">
-            </div>
-          </div>
-          <br>
-          <div class="form-row">
-            <div class="col-sm-5">
-              <input type="text" class="form-control" placeholder="Last name">
-            </div>
-          </div>
-          <br>
-          <div class="form-row">
-            <div class="col-sm-5">
-              <input type="email" class="form-control" placeholder="Email Address">
-            </div>
-          </div>
-        </form>
+          <p class="lead mb-4">
+            I'm always open to discussing new opportunities, projects, or
+            just connecting. Feel free to reach out through any of the
+            channels below.
+          </p>
 
-      </div>
-    </section> -->
+          <ul class="fa-ul mb-4">
+            <li class="mb-2">
+              <i class="fa-li fa fa-envelope"></i>
+              <a href="mailto:milos_pruginic@yahoo.com"
+                >milos_pruginic@yahoo.com</a
+              >
+            </li>
+            <li class="mb-2">
+              <i class="fa-li fa fa-phone"></i>
+              (647) 787-5320
+            </li>
+            <li>
+              <i class="fa-li fa fa-map-marker-alt"></i>
+              North York, ON
+            </li>
+          </ul>
+
+          <div class="social-icons">
+            <a
+              href="https://www.linkedin.com/in/milos-pruginic"
+              target="_blank"
+            >
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/mprugini" target="_blank">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
 
     <!-- Bootstrap core JavaScript -->
@@ -474,5 +503,45 @@
 
     <!-- Custom scripts for this template -->
     <script src="js/resume.min.js"></script>
+
+    <!-- Welcome message button -->
+    <script>
+      (function () {
+        var btn = document.getElementById("welcomeBtn");
+        var icon = document.getElementById("welcomeBtnIcon");
+        var audio = document.getElementById("welcomeAudio");
+
+        if (!btn || !audio) return;
+
+        btn.addEventListener("click", function () {
+          if (!audio.paused) {
+            audio.pause();
+            audio.currentTime = 0;
+            return;
+          }
+          audio.play().catch(function () {
+            btn.setAttribute(
+              "title",
+              "Pronunciation audio isn't available right now"
+            );
+          });
+        });
+
+        audio.addEventListener("play", function () {
+          icon.classList.remove("fa-volume-up");
+          icon.classList.add("fa-pause");
+        });
+
+        audio.addEventListener("pause", function () {
+          icon.classList.remove("fa-pause");
+          icon.classList.add("fa-volume-up");
+        });
+
+        audio.addEventListener("ended", function () {
+          icon.classList.remove("fa-pause");
+          icon.classList.add("fa-volume-up");
+        });
+      })();
+    </script>
   </body>
 </html>
