@@ -75,6 +75,17 @@ p.lead {
   background-color: #BD5D38;
 }
 
+.welcome-btn {
+  vertical-align: middle;
+  font-size: 1.5rem;
+  line-height: 1;
+  border-radius: 100%;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  margin-left: 0.5rem;
+}
+
 .dev-icons {
   font-size: 3rem;
 }
